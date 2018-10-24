@@ -1,0 +1,222 @@
+:host {
+    all: initial;
+    box-sizing: border-box;
+    font: inherit;
+    color: inherit;
+    display: block;
+    height: inherit;
+    --back-principal: #f1f1f1;
+    --borde-suave: #ebebeb;
+    --guia: #c0c0c0;
+    --front: #fafafa;
+    font-size: 13px;/*por fefecto, si el que usa el componente no lo declara*/
+}
+*{
+    box-sizing: border-box;
+}
+#root{
+    display: flex;
+    flex-direction: column;
+    background-color: #e7e5e5;
+    border-radius: .1em;
+    position: relative;
+    height: inherit;
+}
+.cab{
+    flex-shrink: 0;
+    padding: .7em .7em .7em 3em;
+    font-size: .9em;
+    background-image: url('./img/documentos.png');
+    background-repeat: no-repeat;
+    background-position: .6em;
+}
+#client{
+    flex-grow: 1;
+    margin: .3em;
+    padding: .4em;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: .1em;
+    > .reg:nth-child(even){
+        background-color: #f6f6f6;
+    }
+}
+.reg{
+    position: relative;
+    .children{
+        padding-left: 1.8em;
+        position: relative;
+        border-radius: .2em;
+        transition:opacity .3s ease;
+        &.collapsed{
+            overflow: hidden;
+            height: 0;
+            opacity: 0;
+        }
+        .reg{
+            &:first-child{
+                &::before{
+                    height: 2em;
+                    top: -.9em;
+                }
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                display: inline-block;
+                height: 0;
+                width: 1.9em;
+                border-top: 1px solid var(--guia);
+                top: 1em;
+                left: -1.4em;
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                display: inline-block;
+                border-left: 1px solid var(--guia);
+                height: 2.3em;
+                width: 0;
+                top: -1.3em;
+                left: -1.4em;
+            }
+        }
+    }
+}
+.node{
+    &.multiArchivo{
+        .manejador{
+            background-image: url('./img/minus.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+            transition: background-color .3s ease;
+            &:hover{
+                background-color: #aaa;
+            }
+            cursor: pointer;
+            margin-top: .6em;
+            &.collapsed{
+                background-image: url('./img/plus.svg');
+            }
+        }
+    }
+    display: flex;
+    > div{
+        padding: .6em 0;
+    }
+    > div + div{
+        margin-left: .7em;
+    }
+    .manejador{
+        flex-shrink: 0;
+        width: 0.9em;
+        height: 0.9em;
+        margin-right: -0.6em;
+        padding: 0;
+    }
+    .text{
+        padding-left: .3em;
+        flex-grow: 1;
+        flex-basis: 0;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .obli{
+        width: .9em;
+        &.activo{
+            &::before{
+                content: "*";
+                background-color: #ffcc01;
+                color: #017a99;
+                padding: 0 .1em;
+            }
+        }
+    }
+    .firma{
+        width: 1.3em;
+        &.activo{
+            background-image: url('./img/required-signature.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+    .info{
+        width: 1.4em;
+        &.activo{
+            background-image: url('./img/help.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            transition: opacity .2s ease-in-out;
+            &:hover{
+                opacity: .7;
+            }  
+        }
+    }
+    .estado{
+        width: 12em;
+        padding-left: 1.5em;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background-repeat: no-repeat;
+        background-size: 1.1em;
+        background-position: 0 .7em;
+        &.agree{
+            background-image: url('./img/agree.svg');
+        }
+        &.progress{
+            background-image: url('./img/in-progress.svg');
+        }
+        &.excepted{
+            background-image: url('./img/excepted.svg');
+        }
+    }
+    .acciones{
+        width: 10em;
+        display: flex;
+        .ancla{
+            flex-grow: 1;
+            position: relative;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: opacity .2s ease-in-out;
+            &:hover{
+                opacity: .7;
+            } 
+            .cap{
+                cursor: pointer;
+                color: #018ec0;
+                text-decoration: underline;
+            }
+            input{
+                position: absolute;
+                top: 0;
+                left: -160%;
+                width: 300%;
+                height: 110%;
+                opacity: 0;
+                cursor: pointer;
+            }
+        }
+        .menu{
+            &.activo{
+                flex-shrink: 0;
+                width: 1.5em;
+                background-image: url('./img/contextual-menu.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+                transition: opacity .2s ease-in-out;
+                &:hover{
+                    opacity: .7;
+                } 
+            }
+        }
+    }
+}

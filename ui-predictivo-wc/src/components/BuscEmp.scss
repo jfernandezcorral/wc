@@ -1,0 +1,89 @@
+:host {
+    all: initial;
+    box-sizing: border-box;
+    font: inherit;
+    color: inherit;
+    line-height: 1.2;
+    display: inline-block;
+    width: 30em;
+    --borde-st-color: #c0c0c0;
+}
+*{
+    box-sizing: border-box;
+}
+#client{
+    &.progreso{
+        .progress{
+            display: block;
+        }
+    }
+    display: flex;
+    position: relative;
+    input{
+        font: inherit;
+        color: inherit;
+        flex-grow: 1;
+        border: 1px solid var(--borde-st-color);
+        border-radius: .3em;
+        outline: none;
+        padding: .2em;
+        &::-webkit-input-placeholder{
+            font-style: italic;
+            color: silver;
+        }
+    }
+    .manejador{
+        flex-shrink: 0;
+        margin-left: .2em;
+        margin-top: .1em;
+        /*border: 1px solid var(--borde-st-color);
+        border-radius: 2px;
+        box-shadow: 1px 2px 2px #aaa;*/
+        border-radius: 2px;
+        width: 1.6em;
+        height: 1.6em;
+        background-image: url('./img/busqueda-avanzada.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80%;
+        cursor: pointer;
+        transition: background-color .2s ease-in-out;
+        &:hover{
+            background-color: #bbbbbb;
+        } 
+    }
+    .progress{
+        display: none;
+        position: absolute;
+        top: .5em;
+        right: 3.6em;
+        padding: .4em;
+        background-image: url('./img/busy.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .manejadorInterno{
+        position: absolute;
+        top: .4em;
+        right: 2.3em;
+        width: 1em;
+        height: 1em;
+        background-image: url('./img/buscar.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        &.activo{
+            top: .5em;
+            width: .75em;
+            height: .80em;
+            background-size: 90%;
+            background-image: url('./img/cross.svg');
+            background-color: #77736e;
+            border-radius: .8em;
+            cursor: pointer;
+            transition: background-color .2s ease-in-out;
+            &:hover{
+                background-color: #478E9B;
+            } 
+        }
+    }
+}

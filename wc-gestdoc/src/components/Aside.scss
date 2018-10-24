@@ -1,0 +1,26 @@
+:host {
+    all: initial;
+    display: block;
+    position: absolute;
+    /*z-index: 100;*/
+    box-sizing: border-box;
+    font: inherit;
+    color: inherit;
+}
+*{
+    box-sizing: border-box;
+}
+#client{
+    &.anim{
+        animation: tr .2s ease-in-out;
+    }
+}
+@keyframes tr{
+	0%{
+		opacity: 0
+	}
+	100%{
+		opacity: 0.8
+	}
+
+}

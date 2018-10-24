@@ -1,0 +1,483 @@
+:host {
+    all: initial;
+    box-sizing: border-box;
+    font: inherit;
+    color: inherit;
+    display: block;
+    height: inherit;
+    --back-principal: #f1f1f1;
+    --borde-suave: #ebebeb;
+    --guia: #c0c0c0;
+    --front: #fafafa;
+    font-size: 13px;/*por fefecto, si el que usa el componente no lo declara*/
+}
+*{
+    box-sizing: border-box;
+}
+#root{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--back-principal);
+    border-radius: .1em;
+    position: relative;
+    padding: .3em;
+    height: inherit;
+    border: 1px solid var(--borde-suave);
+}
+.cab{
+    display: flex;
+    flex-shrink: 0;
+    background-color: #e8e6e7;
+    >div{
+        padding: .2em .2em .2em .5em;
+        border-right: 1px solid var(--borde-suave);
+        display: flex;
+        align-items: center;
+    }
+}
+#client{
+    flex-grow: 1;
+    padding: .4em 0;
+    overflow-y: scroll;
+    border-radius: .1em;
+}
+.nodoA{
+    > .vert{
+        position: absolute;
+        border-left: 1px solid var(--guia);
+        display: inline-block;
+        height: 2.4em;
+        width: 0;
+        top: -1.4em;
+        left: -1.1em;
+    }
+    &:first-child > .vert{
+        top: -0.85em;
+        height: 1.85em;
+    }
+    position: relative;
+    > .cuerpo{
+        padding-left: .3em;
+        display: flex;
+        .txt{
+            padding: .6em .3em;
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+        .manejador{
+            display: inline-block;
+            background-image: url('./img/minus.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 0.9em;
+            height: 0.9em;
+            padding: .1em;
+            margin-right: 0.1em;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+            transition: background-color .3s ease;
+            &:hover{
+                background-color: #aaa;
+            }
+            cursor: pointer;
+            margin-top: .6em;
+            &.collapsed{
+                background-image: url('./img/plus.svg');
+            }
+        }
+    }
+    > .children{
+        border: 1px solid var(--borde-suave);
+        border-right-width: 0;
+        padding-left: 1.8em;
+        background-color: var(--front);
+        position: relative;
+        border-radius: .2em;
+        transition:opacity .3s ease;
+        &.collapsed{
+            /*display: none;*/
+            overflow: hidden;
+            height: 0;
+            opacity: 0;
+        }
+        &.vertical{
+            &::before{
+                content: '';
+                position: absolute;
+                border-left: 1px solid var(--guia);
+                display: inline-block;
+                height: calc(100% + 1px);
+                width: 0;
+                top: -1.38em;
+                left: -1.2em;
+            }
+        }
+    }
+    &.raiz{
+        > .children{
+            background-color: transparent;
+            border-width: 0; 
+        }
+    }
+    &:not(.raiz){
+        &::after{
+            content: '';
+            position: absolute;
+            display: inline-block;
+            height: 0;
+            width: 1.4em;
+            border-top: 1px solid var(--guia);
+            top: 1em;
+            left: -1.1em;
+        }
+    }
+}
+.nodoD{
+    border-bottom: 1px solid var(--borde-suave);
+    background-color: var(--front);
+    position: relative;
+    border-radius: 2px; 
+    &:last-child{
+        border-bottom-width: 0;
+    }
+    > .children{
+        /*border: 1px solid var(--borde-suave);*/
+        border-right-width: 0;
+        padding-left: 1.8em;
+        background-color: var(--front);
+        position: relative;
+        border-radius: .2em;
+        transition:opacity .3s ease;
+        &.collapsed{
+            overflow: hidden;
+            height: 0;
+            opacity: 0;
+        }
+        &.vertical{
+            &::before{
+                content: '';
+                position: absolute;
+                border-left: 1px solid var(--guia);
+                display: inline-block;
+                height: 100%;
+                width: 0;
+                top: -1.3em;
+                left: -1.1em;
+            }
+        }
+    }
+    > .cuerpo{
+        padding-left: .3em;
+        display: flex;
+        .doc{
+            flex-grow: 1;
+        }
+    }
+    .manejador{
+        display: inline-block;
+        flex-shrink: 0;
+        width: 0.9em;
+        height: 0.9em;
+        padding: .1em;
+        margin-right: 0.1em;
+    }
+    &.multiArchivo > .cuerpo{
+        > .manejador{
+            background-image: url('./img/minus.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid #aaa;
+            border-radius: 2px;
+            transition: background-color .3s ease;
+            &:hover{
+                background-color: #aaa;
+            }
+            cursor: pointer;
+            margin-top: .6em;
+            &.collapsed{
+                background-image: url('./img/plus.svg');
+            }
+        }
+    }
+    &:not(.raiz){
+        &::after{
+            content: '';
+            position: absolute;
+            display: inline-block;
+            height: 0;
+            width: 1.4em;
+            border-top: 1px solid var(--guia);
+            top: 1em;
+            left: -1.1em;
+        }
+        &::before{
+            content: '';
+            position: absolute;
+            display: inline-block;
+            border-left: 1px solid var(--guia);
+            height: 2.4em;
+            width: 0;
+            top: -1.4em;
+            left: -1.1em;
+        }
+        &:first-child::before{
+            height: 1.9em;
+            top: -0.9em;
+        }
+    }
+}
+.nodoD .doc{
+    display: flex;
+    margin-left: .3em;
+    width: 96%;/*bug de web flow??*/
+    > div{
+        padding: .6em 0;
+        border-right: 1px solid var(--borde-suave);
+    }
+    .help{
+        &.activo{
+            background-image: url('./img/help.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 1.4em;
+            cursor: pointer;
+            transition: opacity .2s ease-in-out;
+            &:hover{
+                opacity: .7;
+            }  
+        }
+    }
+    .obl{
+        .obli{
+            display: inline-block;
+            vertical-align: top;
+            width: .9em;
+            &.activo{
+                &::before{
+                    content: "*";
+                    background-color: #ffcc01;
+                    color: #017a99;
+                    padding: 0 .1em;
+                }
+            }
+        }
+        .firma{
+            display: inline-block;
+            width: 1.3em;
+            height: 100%;
+            &.activo{
+                background-image: url('./img/required-signature.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+    }
+    .estado{
+        padding-left: 1.8em;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background-repeat: no-repeat;
+        background-size: 1.1em;
+        background-position: 0.3em .5em;
+        &.agree{
+            background-image: url('./img/agree.svg');
+        }
+        &.progress{
+            background-image: url('./img/in-progress.svg');
+        }
+        &.excepted{
+            background-image: url('./img/excepted.svg');
+        }
+        &.pending{
+            background-image: url('./img/pending.svg');
+        }
+    }
+    .acciones{
+        display: flex;
+        .ancla{
+            flex-grow: 1;
+            position: relative;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: opacity .2s ease-in-out;
+            &:hover{
+                opacity: .7;
+            } 
+            .cap{
+                margin-left: .3em;
+                cursor: pointer;
+                color: #018ec0;
+                text-decoration: underline;
+            }
+            input{
+                position: absolute;
+                top: 0;
+                left: -160%;
+                width: 300%;
+                height: 110%;
+                opacity: 0;
+                cursor: pointer;
+            }
+        }
+        .menu{
+            &.activo{
+                margin-right: .2em;
+                flex-shrink: 0;
+                width: 1.5em;
+                background-image: url('./img/contextual-menu.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+                transition: opacity .2s ease-in-out;
+                &:hover{
+                    opacity: .7;
+                } 
+            }
+        }
+    }
+}
+.documento{
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-shrink: 1;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.help{
+    width: 2em;
+    flex-shrink: 0;
+}
+.obl{
+    width: 3em;
+    text-align: center;
+    flex-shrink: 0;
+}
+.archivo{
+    width: 5em;
+    text-align: center;
+    flex-shrink: 0;
+}
+.incorporado{
+    width: 7em;
+    text-align: center;
+    flex-shrink: 0;
+}
+.estado{
+    width: 11em;
+    flex-shrink: 0;
+}
+.acciones{
+    width: 13em;
+    flex-shrink: 0;
+}
+.scroll{
+    width: 17px;
+    flex-shrink: 0;
+}
+#pie{
+    display: flex;
+    flex-shrink: 0;
+    .ayuda{
+        > div{
+            padding: .5em .5em .5em 1.6em;
+            position: relative;
+        }
+        flex-grow: 1;
+        display: flex;
+    }
+    .mas{
+        align-self: flex-start;
+        flex-shrink: 0;
+        padding: .6em .5em;
+        border: 1px solid -var(--borde-suave);
+        border-radius: 2px;
+        background-image: url('./img/following-results.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: .7em;
+        box-shadow: 0 2px 1px #888;
+        transition: opacity .3s ease-in;
+        cursor: pointer;
+        &:hover{
+            opacity: .7;
+        }
+        &.disabled{
+            opacity: .5;
+            cursor: no-drop;
+        }
+    }
+}
+.pObli{
+    &::before{
+        position: absolute;
+        content: "*";
+        background-color: #ffcc01;
+        color: #017a99;
+        padding: 0 .1em;
+        left: .7em;
+        top: .4em;
+    }
+}
+.pInfo{
+    background-image: url('./img/help.svg');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 1.2em;
+}
+.pAportado{
+    background-image: url('./img/warning.svg');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 1.2em;
+}
+.pExceptuado{
+    background-image: url('./img/excepted.svg');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 1.2em;
+}
+.pPlantilla{
+    background-image: url('./img/template.svg');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 1.2em;
+}
+.pEnTramite{
+    &::before{
+        position: absolute;
+        border-radius: .6em;
+        content: "";
+        background-color: #e5790e;
+        padding: .6em .8em;
+        left: -.2em;
+        top: .4em;
+        background-image: url('./img/in-progressW.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 1em;
+    }
+    
+}
+.pEnTramite2{
+    background-image: url('./img/in-progress.svg');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 1.2em;
+}
+.pPendiente{
+    background-image: url('./img/pending.svg');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 1.2em;
+}
+.pFirma{
+    background-image: url('./img/required-signature.svg');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 1.4em;
+}

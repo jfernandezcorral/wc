@@ -1,0 +1,38 @@
+@font-face{
+	font-family: "Bankia";
+	src: url('./assets/bankia-regular-webfont-woff.woff') format('woff');
+	font-weight: lighter; 
+	font-style: normal;
+}
+@font-face{
+	font-family: "Bankia";
+	src: url('./assets/bankia-medium-webfont-woff.woff') format('woff');
+	font-weight: normal; 
+	font-style: normal;
+}
+@font-face{
+	font-family: "Bankia";
+	src: url('./assets/bankia-bold-webfont-woff.woff') format('woff');
+	font-weight: bold; 
+    font-style: normal;
+}
+body{
+    margin: 0;
+    font-family: "Bankia", verdana;
+    color: #1f1f1f;
+    font-size: .8em;
+    font-weight: lighter;
+}
+bk-wc-ui-tree{
+    display: inline-block;
+    width: 25vw;
+    height: 25vh;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+    border-radius: 3px;
+}
+bk-wc-ui-bean-centros{
+    vertical-align: top;
+    padding: .4em;
+    border-radius: 3px;
+}

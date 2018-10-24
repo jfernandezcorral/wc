@@ -1,0 +1,18 @@
+{
+    "author": {
+        "name": "Bankia"
+    },
+    "name": "ui-predictivo-wc",
+    "version": "1.0.4",
+    "keywords": [
+        "bankia",
+        "predictivo"
+    ],
+    "main": [
+        "./lib/index.min.js"
+    ],
+    "ignore": [],
+    "dependencies": {},
+    "devDependencies": {},
+    "private": true
+}

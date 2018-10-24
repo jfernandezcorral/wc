@@ -1,0 +1,88 @@
+:host {
+    all: initial;
+    display: inline-block;
+    box-sizing: border-box;
+    --color-caret: rgb(230, 237, 148);
+    --buttonface: #DDDDDD;
+    font: inherit;
+    color: inherit;
+}
+*{
+    box-sizing: border-box;
+}
+p{
+    padding: .3em .4em .3em .7em;
+    display: inline-block;
+    margin: 0;
+}
+input{
+    font: inherit;
+    color: inherit;
+    border-radius: 0.25em;
+    width: 4.2em;
+    outline: none;
+    border: none;
+    line-height: 1.9;
+    caret-color: var(--color-caret);
+    border: 1px solid #DADADA;
+    text-align: center;
+    background-color: #fff;
+    outline-offset: -.5em;
+    &.animation-ok{
+        animation: tr .25s;
+        animation-direction: alternate;
+    }
+    &.animation-err{
+        animation: tr-err .25s;
+        animation-direction: alternate;
+    }
+    &.error{
+        outline: 1px solid rgb(151, 3, 2);
+    }
+    &::selection{
+        background-color: var(--color-caret);
+    }
+}
+button{
+    font: inherit;
+    color: inherit;
+    box-shadow: 0 2px 2px var(--buttonface);
+    border: none;
+    outline: none;
+    margin-left: 0.5em;
+    padding: 1em;
+    border-radius: 0.2em;
+    background-image: url('./img/change-center.svg');
+    background-color: var(--buttonface);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: super;
+    cursor: pointer;
+    transition: opacity, background-color 0.3s ease;
+    &:not([disabled]):hover{
+        opacity: 0.6;
+        background-color: silver;
+    }
+    &[disabled]{
+        background-color: silver;
+    }
+}
+@keyframes tr{
+	0%{
+        /*background-color: white;*/
+	}
+	100%{
+		background-color: rgba(200, 255, 200, 0.7);
+	}
+
+}
+@keyframes tr-err{
+	0%{
+        /*background-color: white;*/
+	}
+	100%{
+		background-color: rgba(255, 200, 200, 0.7);
+	}
+
+}
